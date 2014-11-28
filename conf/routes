@@ -9,7 +9,12 @@ GET     /                           @controllers.Application.index
 GET     /randomUUID                 @controllers.Application.randomUUID
 
 # User management API
-GET     /viruses                    @controllers.Viruses.findViruses
+#GET     /users                     @controllers.Users.getUser
+#POST    /user                      @controllers.Users.createUser
+
+# Virus Info management API
+GET     /viruses                    @controllers.Viruses.getViruses
+GET     /virus/*virusMD5            @controllers.Viruses.getVirus(virusMD5)
 #POST    /virus                      @controllers.Viruses.createVirus
 
 # Map static resources from the /public folder to the /assets URL path

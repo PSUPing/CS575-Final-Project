@@ -1,0 +1,52 @@
+
+
+    <div class="row" ng-controller="VirusCtrl as vc">
+        &NonBreakingSpace;
+        <div class="jumbotron">
+            <h2>Virus DB</h2>
+
+            <p class="pull-right">... a UI created using AngularJS and Bootstrap</p>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                <h3>
+                    Users
+                    <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
+                </h3>
+                <hr>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
+                <hr>
+            </div>
+
+
+            <table id="virus_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>MD5</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="vir in vc.viruses | filter:searchText">
+                    <td>
+                        {{ vir.MD5 }}
+                    </td>
+                </tr>
+                <tr ng-hide="vc.viruses.length">
+                    <td colspan="3">
+                        <p class="text-center">No Virus Information Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h4>Debug:</h4>
+            <pre>{{ vc.viruses | json }}</pre>
+        </div>
+
+    </div>
+
