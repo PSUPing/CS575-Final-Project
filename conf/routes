@@ -15,7 +15,7 @@ GET     /randomUUID                 @controllers.Application.randomUUID
 # Virus Info management API
 GET     /viruses                    @controllers.Viruses.getViruses
 GET     /virus/*virusMD5            @controllers.Viruses.getVirus(virusMD5)
-#POST    /virus                      @controllers.Viruses.createVirus
+POST    /virus                      @controllers.Viruses.addVirus
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
