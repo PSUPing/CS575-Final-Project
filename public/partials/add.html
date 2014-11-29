@@ -1,0 +1,220 @@
+<div class="row">
+    <h3>Add Virus Information</h3>
+    <div class="row" ng-controller="AddVirusCtrl as avc">
+        <form id="AddVirusForm" name="AddVirusForm" class="form-horizontal" role="form"
+              ng-submit="avc.addVirus()">
+            <ul ng-init="tab = 1">
+                <li ng-class="{active:tab===1}">
+                    <a href class="btn btn-primary" ng-click="tab = 1">General Information</a>
+                </li>
+                <li ng-class="{active:tab===2}">
+                    <a href class="btn btn-primary" ng-click="tab = 2">Virus Scan Results</a>
+                </li>
+                <br><br>
+                <div ng-show="tab===1">
+                    <br>
+                    <div class="form-group">
+                        <label id="lbl_MD5" for="MD5" class="col-sm-4 control-label">MD5</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="MD5" id="MD5" placeholder=""
+                                   ng-model="avc.virus.MD5" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_SHA1" for="SHA1" class="col-sm-4 control-label">SHA1</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="SHA1" id="SHA1" placeholder=""
+                                   ng-model="avc.virus.SHA1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_SHA256" for="SHA256" class="col-sm-4 control-label">SHA256</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="SHA256" id="SHA256" placeholder=""
+                                   ng-model="avc.virus.SHA256">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_SSDeep" for="SSDeep" class="col-sm-4 control-label">SSDeep</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="SSDeep" id="SSDeep" placeholder=""
+                                   ng-model="avc.virus.SSDeep">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_time_stamp" for="time_stamp" class="col-sm-4 control-label">Time Stamp</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="time_stamp" id="time_stamp" placeholder=""
+                                   ng-model="avc.virus.time_stamp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Size" for="Size" class="col-sm-4 control-label">Size</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Size" id="Size" placeholder=""
+                                   ng-model="avc.virus.file_information.size">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_file_type" for="file_type" class="col-sm-4 control-label">File Type</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="file_type" id="file_type" placeholder=""
+                                   ng-model="avc.virus.file_information.file_type">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_mime_type" for="mime_type" class="col-sm-4 control-label">MIME Type</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="mime_type" id="mime_type" placeholder=""
+                                   ng-model="avc.virus.file_information.mime_type">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_description" for="description" class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="description" id="description" placeholder=""
+                                   ng-model="avc.virus.file_information.description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_code_size" for="code_size" class="col-sm-4 control-label">Code Size</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="code_size" id="code_size" placeholder=""
+                                   ng-model="avc.virus.file_information.code_size">
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="tab===2">
+                    <br>
+                    <div class="form-group">
+                        <label id="lbl_AVG" for="AVG" class="col-sm-4 control-label">AVG</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="AVG" id="AVG" placeholder=""
+                                   ng-model="avc.virus.av_scans.AVG">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Avast" for="Avast" class="col-sm-4 control-label">avast!</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Avast" id="Avast" placeholder=""
+                                   ng-model="avc.virus.av_scans.Avast">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Kaspersky" for="Kaspersky" class="col-sm-4 control-label">Kaspersky</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Kaspersky" id="Kaspersky" placeholder=""
+                                   ng-model="avc.virus.av_scans.Kaspersky">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Microsoft" for="Microsoft" class="col-sm-4 control-label">Microsoft</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Microsoft" id="Microsoft" placeholder=""
+                                   ng-model="avc.virus.av_scans.Microsoft">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Sophos" for="Sophos" class="col-sm-4 control-label">Sophos</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Sophos" id="Sophos" placeholder=""
+                                   ng-model="avc.virus.av_scans.Sophos">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_AVware" for="AVware" class="col-sm-4 control-label">AVware</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="AVware" id="AVware" placeholder=""
+                                   ng-model="avc.virus.av_scans.AVware">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_AdAware" for="AdAware" class="col-sm-4 control-label">Ad-Aware</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="AdAware" id="AdAware" placeholder=""
+                                   ng-model="avc.virus.av_scans.AdAware">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_BaiduInternational" for="BaiduInternational" class="col-sm-4 control-label">Baidu International</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="BaiduInternational" id="BaiduInternational" placeholder=""
+                                   ng-model="avc.virus.av_scans.BaiduInternational">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_BitDefender" for="BitDefender" class="col-sm-4 control-label">Bit Defender</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="BitDefender" id="BitDefender" placeholder=""
+                                   ng-model="avc.virus.av_scans.BitDefender">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_ClamAV" for="ClamAV" class="col-sm-4 control-label">Clam AV</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="ClamAV" id="ClamAV" placeholder=""
+                                   ng-model="avc.virus.av_scans.ClamAV">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_ESETNOD32" for="ESETNOD32" class="col-sm-4 control-label">ESETNOD32</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="ESETNOD32" id="ESETNOD32" placeholder=""
+                                   ng-model="avc.virus.av_scans.ESETNOD32">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Emsisoft" for="Emsisoft" class="col-sm-4 control-label">Emsisoft</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Emsisoft" id="Emsisoft" placeholder=""
+                                   ng-model="avc.virus.av_scans.Emsisoft">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_McAfee" for="McAfee" class="col-sm-4 control-label">McAfee</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="McAfee" id="McAfee" placeholder=""
+                                   ng-model="avc.virus.av_scans.McAfee">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_McAfeeGWEdition" for="McAfeeGWEdition" class="col-sm-4 control-label">McAfee GW Edition</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="McAfeeGWEdition" id="McAfeeGWEdition" placeholder=""
+                                   ng-model="avc.virus.av_scans.McAfeeGWEdition">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_Symantec" for="Symantec" class="col-sm-4 control-label">Symantec</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Symantec" id="Symantec" placeholder=""
+                                   ng-model="avc.virus.av_scans.Symantec">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_VBA32" for="VBA32" class="col-sm-4 control-label">VBA32</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="VBA32" id="VBA32" placeholder=""
+                                   ng-model="avc.virus.av_scans.VBA32">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl_nProtect" for="nProtect" class="col-sm-4 control-label">nProtect</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="nProtect" id="nProtect" placeholder=""
+                                   ng-model="avc.virus.av_scans.nProtect">
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <pre>{{ avc.virus | json }}</pre>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8 text-right">
+                    <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                    <button type="submit" class="btn btn-success" id="btn_add">Add Virus</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

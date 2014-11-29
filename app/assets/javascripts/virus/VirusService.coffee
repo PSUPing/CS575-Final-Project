@@ -38,7 +38,7 @@ class VirusService
         deferred.promise
 
     addVirus: (virus) ->
-        @$log.debug "createVirus #{angular.toJson(virus, true)}"
+        @$log.debug "addVirus #{angular.toJson(virus, true)}"
         deferred = @$q.defer()
 
         @$http.post('/virus', virus)
