@@ -1,0 +1,67 @@
+
+
+    <div class="row" ng-controller="VirusCtrl as vc">
+        &NonBreakingSpace;
+        <div class="jumbotron">
+            <h2>Welcome to the Virus Information DB!</h2>
+            <p>This database seeks to allow people to track and catalog various pieces of malware currently in use.  Please use this website as a way to learn more about malware and to add malware that you find.</p>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                <h3>
+                    Search by Virus MD5 Checksum
+<!--                    <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add Virus Info</a>-->
+                </h3>
+                <hr>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter by Virus MD5s...">
+                <hr>
+            </div>
+
+
+            <table id="virus_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>MD5</th>
+                    <th>Symantec</th>
+                    <th>McAfee</th>
+                    <th>Kaspersky</th>
+                    <th>Date Added</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="vir in vc.viruses | filter:searchText">
+                    <td>
+                        <a href="/#/virus/{{ vir.MD5 }}">{{ vir.MD5 }}</a>
+                    </td>
+                    <td>
+                        {{ vir.av_scans.Symantec }}
+                    </td>
+                    <td>
+                        {{ vir.av_scans.McAfee }}
+                    </td>
+                    <td>
+                        {{ vir.av_scans.Kaspersky }}
+                    </td>
+                    <td>
+                        {{ vir.time_stamp }}
+                    </td>
+                </tr>
+                <tr ng-hide="vc.viruses.length">
+                    <td colspan="3">
+                        <p class="text-center">No Virus Information Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+<!--            <hr>
+            <h4>Debug:</h4>
+            <pre>{{ vc.viruses | json }}</pre> -->
+        </div>
+
+    </div>
+

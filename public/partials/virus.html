@@ -2,50 +2,76 @@
 
     <div class="row" ng-controller="VirusCtrl as vc">
         &NonBreakingSpace;
-        <div class="jumbotron">
-            <h2>Virus DB</h2>
-
-            <p class="pull-right">... a UI created using AngularJS and Bootstrap</p>
-        </div>
-
+        <h4><b>MD5</b>: {{ vc.viruses[0].MD5 }}</h4>
 
         <div class="row">
-            <div class="form-group">
-                <h3>
-                    Users
-                    <a ng-href="/#/users/create" class="btn btn-primary pull-right" id="btn_user_create">Add User</a>
-                </h3>
-                <hr>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Users...">
-                <hr>
-            </div>
+    		<ul ng-init="tab = 1">
+    			<li ng-class="{active:tab===1}">
+    				<a href class="btn btn-primary" ng-click="tab = 1">General Information</a>	
+    			</li>
+    			<li ng-class="{active:tab===2}">
+    				<a href class="btn btn-primary" ng-click="tab = 2">Virus Scan Results</a> 
+    			</li>
+    			<br><br>
+    			<div ng-show="tab===1">
+    			    <table id="virus_list" class="table table-striped">
+			            <tr>
+    			            <td>MD5</td>
+    			            <td>{{ vc.viruses[0].MD5 }}</td>
+			            </tr>
+			            <tr>
+    			            <td>SHA1</td>
+    			            <td>{{ vc.viruses[0].SHA1 }}</td>
+			            </tr>
+			            <tr>
+    			            <td>SHA256</td>
+    			            <td>{{ vc.viruses[0].SHA256 }}</td>
+			            </tr>
+			            <tr>
+    			            <td>SSDeep</td>
+    			            <td>{{ vc.viruses[0].SSDeep }}</td>
+			            </tr>
+			            <tr>
+    			            <td>Size</td>
+    			            <td>{{ vc.viruses[0].file_information.size }}</td>
+			            </tr>
+			            <tr>
+    			            <td>File Type</td>
+    			            <td>{{ vc.viruses[0].file_information.file_type }}</td>
+			            </tr>
+			            <tr>
+    			            <td>MIME Type</td>
+    			            <td>{{ vc.viruses[0].file_information.mime_type }}</td>
+			            </tr>
+			            <tr>
+    			            <td>Description</td>
+    			            <td>{{ vc.viruses[0].file_information.description }}</td>
+			            </tr>
+			            <tr>
+    			            <td>Code Size</td>
+    			            <td>{{ vc.viruses[0].file_information.code_size }}</td>
+    			        </tr>
+    			    </table>
+    			</div>
+    			<div ng-show="tab===2">
+    			    <table id="virus_list" class="table table-striped">
+    			        <thead>
+    			            <th>Anti-Virus Software</th>
+    			            <th>Virus Classification</th>
+    			        </thead>
+    			        <tbody>
+    			            <tr ng-repeat="(key,val) in vc.viruses[0].av_scans">
+        			            <td>{{ key }}</td>
+                                <td>{{ val }}</td>
+    			            </tr>
+    			        </tbody>
+    			    </table>
+                </div>
+    		</ul>
 
-
-            <table id="virus_list" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>MD5</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="vir in vc.viruses | filter:searchText">
-                    <td>
-                        {{ vir.MD5 }}
-                    </td>
-                </tr>
-                <tr ng-hide="vc.viruses.length">
-                    <td colspan="3">
-                        <p class="text-center">No Virus Information Found</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <hr>
+<!--            <hr>
             <h4>Debug:</h4>
-            <pre>{{ vc.viruses | json }}</pre>
+            <pre>{{ vc.viruses | json }}</pre>-->
         </div>
 
     </div>

@@ -16,12 +16,15 @@ angular.module('myApp.routeConfig', ['ngRoute'])
     .config ($routeProvider) ->
         $routeProvider
             .when('/', {
-                templateUrl: '/assets/partials/view.html'
+                templateUrl: '/assets/partials/viruses.html'
             })
-            .when('/users/create', {
-                templateUrl: '/assets/partials/create.html'
+            .when('/debug', {
+                templateUrl: '/assets/partials/viruses.html'
             })
-            .when('/virus/', {
+            .when('/virus/add', {
+                templateUrl: '/assets/partials/add.html'
+            })
+            .when('/virus/:virMD5', {
                 templateUrl: '/assets/partials/virus.html'
             })
             .otherwise({redirectTo: '/'})

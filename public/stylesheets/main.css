@@ -5,3 +5,15 @@ body {
     padding-bottom: 30px;
     min-width: 970px;
 }
+
+ul {
+	border-radius: 5px;
+	padding: 7px 11px;
+}
+
+li {
+	float: left;
+	padding: 5px 19px;
+	margin: 5px 2px 5px 0px;
+	list-style: none;
+}

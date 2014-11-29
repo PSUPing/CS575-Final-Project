@@ -22,6 +22,21 @@ class VirusService
             )
         deferred.promise
 
+    getVirus: (virMD5) ->
+        @$log.debug "getViruses()"
+        deferred = @$q.defer()
+
+        @$http.get("/virus/" + virMD5)
+        .success((data, status, headers) =>
+                @$log.info("Successfully retrieved Virus Info - status #{status}")
+                deferred.resolve(data)
+            )
+        .error((data, status, headers) =>
+                @$log.error("Failed to retrieve Virus Info - status #{status}")
+                deferred.reject(data);
+            )
+        deferred.promise
+
     addVirus: (virus) ->
         @$log.debug "createVirus #{angular.toJson(virus, true)}"
         deferred = @$q.defer()
