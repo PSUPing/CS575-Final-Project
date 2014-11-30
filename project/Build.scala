@@ -2,7 +2,7 @@ import sbt._
 
 object ApplicationBuild extends Build {
 
-  val appName         = "modern-web-template"
+  val appName         = "virus-info-db"
   val appVersion      = "0.1-SNAPSHOT"
 
   val appDependencies = Seq(
