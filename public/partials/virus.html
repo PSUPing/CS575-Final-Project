@@ -23,10 +23,14 @@
     			            <td>SHA256</td>
     			            <td>{{ vc.viruses[0].SHA256 }}</td>
 			            </tr>
-			            <tr>
-    			            <td>SSDeep</td>
-    			            <td>{{ vc.viruses[0].SSDeep }}</td>
-			            </tr>
+						<tr>
+							<td>SSDeep</td>
+							<td>{{ vc.viruses[0].SSDeep }}</td>
+						</tr>
+						<tr>
+							<td>Time Stamp</td>
+							<td>{{ vc.viruses[0].time_stamp }}</td>
+						</tr>
 			            <tr>
     			            <td>Size</td>
     			            <td>{{ vc.viruses[0].file_information.size }}</td>
@@ -64,10 +68,10 @@
     			    </table>
                 </div>
     		</ul>
-
 <!--            <hr>
             <h4>Debug:</h4>
             <pre>{{ vc.viruses | json }}</pre>-->
+			<a ng-href="/#/virus/update/{{ vc.viruses[0].MD5 }}" id="btn_update" class="btn btn-primary pull-right">Update Virus Information</a>
         </div>
 
     </div>

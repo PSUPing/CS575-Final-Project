@@ -52,4 +52,19 @@ class VirusService
             )
         deferred.promise
 
+    updateVirus: (virus) ->
+        @$log.debug "updateVirus #{angular.toJson(virus, true)}"
+        deferred = @$q.defer()
+
+        @$http.put('/virus/{{ virus.MD5 }}', virus)
+        .success((data, status, headers) =>
+                @$log.info("Successfully updated Virus Info - status #{status}")
+                deferred.resolve(data)
+            )
+        .error((data, status, headers) =>
+                @$log.error("Failed to update Virus Info - status #{status}")
+                deferred.reject(data);
+            )
+        deferred.promise
+
 servicesModule.service('VirusService', VirusService)

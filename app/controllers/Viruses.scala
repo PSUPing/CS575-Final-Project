@@ -27,10 +27,6 @@ class Viruses extends Controller with MongoController {
 
   private final val logger: Logger = LoggerFactory.getLogger(classOf[Virus])
 
-/*  def uri = MongoClientURI("mongodb://bwilhelm:CS575@ds051980.mongolab.com:51980/cs575_virus_db")
-  def mongoClient =  MongoClient(uri)
-  def db = mongoClient("cs575_virus_db")
-  def collection = db("virus_info_db")*/
   /*
    * Get a JSONCollection (a Collection implementation that is designed to work
    * with JsObject, Reads and Writes.)
@@ -59,9 +55,42 @@ class Viruses extends Controller with MongoController {
       }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-  // ------------------------------------------ //
-  // Using case classes + Json Writes and Reads //
-  // ------------------------------------------ //
+  def updateVirus = Action.async(parse.json) {
+    request =>
+      /*
+       * request.body is a JsValue.
+       * There is an implicit Writes that turns this JsValue as a JsObject,
+       * so you can call insert() with this JsValue.
+       * (insert() takes a JsObject as parameter, or anything that can be
+       * turned into a JsObject using a Writes.)
+       */
+      request.body.validate[Virus].map {
+        virus: Virus =>
+          collection.update(Json.obj("MD5" -> virus.MD5), virus).map {
+            lastError =>
+              logger.debug(s"Successfully updated with LastError: $lastError")
+              Created(s"Virus Info Updated")
+          }
+      }.getOrElse(Future.successful(BadRequest("invalid json")))
+  }
+
+  def getVirusForUpdate(virusMD5: String) = Action.async {
+    // let's do our query
+    val cursor: Cursor[Virus] = collection
+      .find(Json.obj("MD5" -> virusMD5))
+      .cursor[Virus]
+
+    val futureVirusesList: Future[List[Virus]] = cursor.collect[List]()
+
+    val futureVirusesJsonArray: Future[JsArray] = futureVirusesList.map { viruses =>
+      Json.arr(viruses)
+    }
+
+    futureVirusesJsonArray.map {
+      viruses =>
+        Ok(viruses(0))
+    }
+  }
   
   def getVirus(virusMD5: String) = Action.async {
     // let's do our query

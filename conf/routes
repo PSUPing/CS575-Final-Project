@@ -5,17 +5,15 @@
 # ~~~~
 
 # Single endpoint for serving AngularJS
-GET     /                           @controllers.Application.index
-GET     /randomUUID                 @controllers.Application.randomUUID
+GET         /                       @controllers.Application.index
+GET         /randomUUID             @controllers.Application.randomUUID
 
-# User management API
-#GET     /users                     @controllers.Users.getUser
-#POST    /user                      @controllers.Users.createUser
-
-# Virus Info management API
-GET     /viruses                    @controllers.Viruses.getViruses
-GET     /virus/*virusMD5            @controllers.Viruses.getVirus(virusMD5)
-POST    /virus                      @controllers.Viruses.addVirus
+# Virus Information Management API
+GET         /viruses                @controllers.Viruses.getViruses
+GET         /virus/*virusMD5        @controllers.Viruses.getVirus(virusMD5)
+POST        /virus                  @controllers.Viruses.addVirus
+GET         /virus/update/*virusMD5 @controllers.Viruses.getVirusForUpdate(virusMD5)
+PUT         /virus/update           @controllers.Viruses.updateVirus
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file           controllers.Assets.at(path="/public", file)

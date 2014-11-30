@@ -24,6 +24,9 @@ angular.module('myApp.routeConfig', ['ngRoute'])
             .when('/virus/add', {
                 templateUrl: '/assets/partials/add.html'
             })
+            .when('/virus/update/:virMD5', {
+                templateUrl: '/assets/partials/update.html'
+            })
             .when('/virus/:virMD5', {
                 templateUrl: '/assets/partials/virus.html'
             })
