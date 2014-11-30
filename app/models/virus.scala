@@ -6,7 +6,7 @@ case class Virus(MD5: String,
                  SSDeep: Option[String],
                  time_stamp: Option[String],
                  av_scans: Option[VirusScan],
-                 file_information: FileInfo)
+                 file_information: Option[FileInfo])
 
 case class VirusScan(AVG: Option[String],
                      Avast: Option[String],
