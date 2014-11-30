@@ -74,7 +74,7 @@ class Viruses extends Controller with MongoController {
       }.getOrElse(Future.successful(BadRequest("invalid json")))
   }
 
-  def getVirusForUpdate(virusMD5: String) = Action.async {
+/*  def getVirusForUpdate(virusMD5: String) = Action.async {
     // let's do our query
     val cursor: Cursor[Virus] = collection
       .find(Json.obj("MD5" -> virusMD5))
@@ -90,7 +90,7 @@ class Viruses extends Controller with MongoController {
       viruses =>
         Ok(viruses(0))
     }
-  }
+  }*/
   
   def getVirus(virusMD5: String) = Action.async {
     // let's do our query

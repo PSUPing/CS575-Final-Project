@@ -23,16 +23,16 @@ class VirusService
         deferred.promise
 
     getVirus: (virMD5) ->
-        @$log.debug "getViruses()"
+        @$log.debug "getVirus()"
         deferred = @$q.defer()
 
-        @$http.get("/virus/" + virMD5)
+        @$http.get("/viruses/" + virMD5)
         .success((data, status, headers) =>
-                @$log.info("Successfully retrieved Virus Info - status #{status}")
+                @$log.info("Successfully retrieved Virus Info for " + virMD5 + " - status #{status}")
                 deferred.resolve(data)
             )
         .error((data, status, headers) =>
-                @$log.error("Failed to retrieve Virus Info - status #{status}")
+                @$log.error("Failed to retrieve Virus Info " + virMD5 + " - status #{status}")
                 deferred.reject(data);
             )
         deferred.promise
@@ -41,7 +41,7 @@ class VirusService
         @$log.debug "addVirus #{angular.toJson(virus, true)}"
         deferred = @$q.defer()
 
-        @$http.post('/virus', virus)
+        @$http.post('/viruses', virus)
         .success((data, status, headers) =>
                 @$log.info("Successfully added Virus Info - status #{status}")
                 deferred.resolve(data)
@@ -56,7 +56,7 @@ class VirusService
         @$log.debug "updateVirus #{angular.toJson(virus, true)}"
         deferred = @$q.defer()
 
-        @$http.put('/virus/{{ virus.MD5 }}', virus)
+        @$http.put('/viruses', virus)
         .success((data, status, headers) =>
                 @$log.info("Successfully updated Virus Info - status #{status}")
                 deferred.resolve(data)
