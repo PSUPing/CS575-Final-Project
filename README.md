@@ -13,7 +13,7 @@ Navigate to “http://localhost:9000/“ in the browser of your choice.
 
 Video Link
 =-=-=-=-=-
-You can view a video of this application being used at http://www.youtube.com/<insert-link-here>
+You can view a video of this application being used at http://youtu.be/a3UQPCeoo9k
 
 Document
 =-=-=-=-
